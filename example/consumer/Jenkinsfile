@@ -1,0 +1,9 @@
+node {
+  jpm.install()
+
+  def withNvm = jpm 'withNvm'
+
+  withNvm {
+
+  }
+}

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+JPM_REGISTRY=${JPM_REGISTRY:-https://registry.jpm.org}
+
+publish() {
+  name=`echo $1 | awk -F "@" '{print $1}'`
+  version=`echo $1 | awk -F "@" '{print $2}'`
+  script=$2
+
+  if [ -z "$version" ]
+  then
+    exit 1
+  fi
+
+  echo "Publishing $name@$version..."
+
+  curl --ipv4 -X POST $JPM_REGISTRY/package/$name@$version \
+    -H 'content-type: text/plain' \
+    -F "file=@$2;filename=package"
+    #-d @$2
+}
+
+publish $1 $2
