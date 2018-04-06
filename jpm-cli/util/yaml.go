@@ -17,3 +17,9 @@ func ReadYAML(path string, model interface{}) error {
 
 	return yaml.Unmarshal(yamlFile, model)
 }
+
+func WriteYAML(path string, data interface{}) error {
+	contents, _ := yaml.Marshal(&data)
+
+	return ioutil.WriteFile(path, contents, 0644)
+}

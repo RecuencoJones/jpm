@@ -1,9 +1,15 @@
+@Library('jpm') _
+
 node {
-  jpm.install()
+    checkout scm
 
-  def withNvm = jpm 'withNvm'
+  dir('example/consumer') {
+    jpm.install()
 
-  withNvm {
+    def withNvm = jpm('withNvm')
 
+    withNvm {
+      echo "npm install"
+    }
   }
 }

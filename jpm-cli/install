@@ -25,7 +25,7 @@ install() {
 
   echo $JPM_REGISTRY/package/$name@$version
 
-  curl --ipv4 -X GET $JPM_REGISTRY/package/$name@$version >> ./jpm_modules/$name
+  curl --ipv4 -X GET $JPM_REGISTRY/package/$name@$version > ./jpm_modules/$name/$name.groovy
 }
 
 install $1

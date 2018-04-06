@@ -1,3 +1,6 @@
+name: consumer
+version: 0.1.0
+main: ./Jenkinsfile
+files: ""
 dependencies:
-- foo@3
-- withNvm
+- withNvm@3.0.0

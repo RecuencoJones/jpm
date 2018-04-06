@@ -1,0 +1,5 @@
+name: withNvm
+version: '3.0.0'
+main: 'withNvm.groovy'
+files:
+- 'withNvm.groovy'

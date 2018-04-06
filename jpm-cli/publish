@@ -9,15 +9,20 @@ publish() {
 
   if [ -z "$version" ]
   then
+    echo "Missing version"
     exit 1
   fi
 
   echo "Publishing $name@$version..."
 
-  curl --ipv4 -X POST $JPM_REGISTRY/package/$name@$version \
-    -H 'content-type: text/plain' \
-    -F "file=@$2;filename=package"
-    #-d @$2
+  zip -rj pkg.zip $(realpath `dirname withNvm.groovy`)
+
+  curl --ipv4 -X POST \
+    -H 'content-type: multipart/form-data' \
+    -F file=@`realpath pkg.zip` \
+    $JPM_REGISTRY/package/$name@$version
+
+  rm pkg.zip
 }
 
 publish $1 $2
